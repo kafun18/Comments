@@ -66,7 +66,7 @@ module.exports = {
           // koa 代码在 ./mock 目录中，启动命令为 npm run mock
           '/api': {
             target: 'http://localhost:8081/comment',
-			// target: 'http://localhost:3000',
+			//target: 'http://localhost:3000',
             secure: false
           }
         },

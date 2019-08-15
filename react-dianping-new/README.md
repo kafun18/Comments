@@ -5,7 +5,7 @@
 运行程序
 
 `npm install`
-`npm run mock`
+`npm run mock`    或者start /b npm run mock让其后台运行
 set NODE_ENV=dev
 `npm start`
 
