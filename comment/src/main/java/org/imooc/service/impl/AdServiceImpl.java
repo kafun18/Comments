@@ -35,6 +35,7 @@ public class AdServiceImpl implements AdService {
 		ad.setLink(adDto.getLink());
 		ad.setWeight(adDto.getWeight());
 		if (adDto.getImgFile() != null && adDto.getImgFile().getSize() > 0) {
+			//System.currentTimeMillis()时间戳防止文件名重名
 			String fileName = System.currentTimeMillis() + "_" + adDto.getImgFile().getOriginalFilename();
 			File file = new File(adImageSavePath + fileName);
 			File fileFolder = new File(adImageSavePath);
@@ -82,6 +83,11 @@ public class AdServiceImpl implements AdService {
 	public boolean modify(AdDto adDto) {
 		Ad ad = new Ad();
 		BeanUtils.copyProperties(adDto, ad);
+
+		String img = adDto.getImg();
+		String[] img_fileName = img.split("/");
+		adDto.setImgFileName(img_fileName[5]);
+
 		String fileName = null;
 		if (adDto.getImgFile() != null && adDto.getImgFile().getSize() > 0) {
 			try {
@@ -108,5 +114,11 @@ public class AdServiceImpl implements AdService {
 		int deleteRows = adDao.delete(id);
 		FileUtil.delete(adImageSavePath + ad.getImgFileName());
 		return deleteRows == 1;
+	}
+
+	public static void main(String[] args) {
+		String url="http://127.0.0.1:8080/upload/ad/1566463472186_ad_1.png";
+		String[] a = url.split("/");
+		System.out.println(a[5]);
 	}
 }
