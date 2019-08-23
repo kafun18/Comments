@@ -1,3 +1,4 @@
+//防止第三方JS插件的同名空间产生污染
 var common = window.common || {};
 
 /**
